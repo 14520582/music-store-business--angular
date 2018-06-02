@@ -1,0 +1,17 @@
+<mat-card class="album-card">
+  <div class="container">
+    <a [routerLink]="['/detail-album', {id: item.id}]">
+      <img src={{item.cover}} alt="{{item.name}}">
+    </a>
+    <button class="btn btn-outline-danger" (click)="addToCart()">Add to cart</button>
+  </div>
+  <div class="details">
+    <a [routerLink]="['/detail-album', {id: item.id}]">
+      <mat-card-title class="title">{{item.name}}</mat-card-title>
+    </a>
+    <div class="sub-detail-container">
+      <div>{{item.artist.name}}</div>
+      <div class="price">{{item.price | currency:'VND'}}</div>
+    </div>
+  </div>
+</mat-card>

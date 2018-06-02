@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg fixed-top" appScrollHeader>
+  <div class="navbar-translate">
+    <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-bar"></span>
+      <span class="navbar-toggler-bar"></span>
+      <span class="navbar-toggler-bar"></span>
+    </button>
+    <a class="navbar-brand" [routerLink]="['/home']">
+      <img src="assets/img/angular-red.png" width="48">
+    </a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link">V-pop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">K-pop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">US-UK</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Japan</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" #menuTriggerNews="matMenuTrigger" (mouseenter)="menuTriggerNews.openMenu()" [matMenuTriggerFor]="news">Genres</a>
+        <mat-menu #news="matMenu">
+          <span (mouseleave)="menuTriggerNews.closeMenu()">
+            <div *ngFor="let genre of genres">
+              <button mat-menu-item (click)="navigateToNewsList(genre.name)">{{genre.name}}</button>
+            </div>
+            <!-- <button mat-menu-item (click)="navigateToNewsList('market')">Tin thị trường</button>
+            <button mat-menu-item (click)="navigateToNewsList('analysis')">Phân tích - nhận định</button>
+            <button mat-menu-item (click)="navigateToNewsList('policy')">Chính sách - Quản lý</button>
+            <button mat-menu-item (click)="navigateToNewsList('plan')">Thông tin quy hoạch</button>
+            <button mat-menu-item (click)="navigateToNewsList('worldwide')">Bất động sản thế giới</button>
+            <button mat-menu-item (click)="navigateToNewsList('constant')">Tư vất luật</button>
+            <button mat-menu-item (click)="navigateToNewsList('advice')">Lời khuyên</button> -->
+          </span>
+        </mat-menu>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/contact']">Contact</a>
+      </li>
+    </ul>
+    <button class="cart-btn" (click)="toCart()">
+      <mat-icon>shopping_cart</mat-icon>
+      <span class="number">{{order ? order.details.length : 0}}</span>
+    </button>
+    <button mat-raised-button class="btn btn-login" *ngIf="!authService.logged" (click)="openLoginScreen()">Sign in</button>
+    <button mat-button [matMenuTriggerFor]="menu" *ngIf="authService.logged" class="btn-login">
+      <mat-icon>
+        account_circle
+      </mat-icon>
+      {{userInfo.name}}
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item>Order history</button>
+      <button mat-menu-item (click)="logout()">Sign out</button>
+    </mat-menu>
+  </div>
+</nav>

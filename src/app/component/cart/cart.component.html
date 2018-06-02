@@ -1,0 +1,86 @@
+<div class="section-container full-screen">
+  <div *ngIf="order; else noOrder">
+    <div class="container" fxLayout="row">
+      <div fxFlex="80">
+        <button class="btn btn-outline-danger" (click)="removeAll()">Remove all</button>
+        <div *ngFor="let item of order.details">
+          <div class="prod-item">
+            <div class="col1">
+              <img src={{item.album.cover}} alt="">
+            </div>
+            <div class="col2">
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="name">{{item.album.name}}</div>
+                <div class="artist">{{item.album.artist.name}}</div>
+              </div>
+              <div class="size-qty-wrap">
+                <div class="seller">
+                  <span class="gray">Price: </span>
+                  <span class="value">{{item.album.price | currency:'VND'}}</span>
+                  <!--<span class="icon"></span>-->
+                </div>
+                <div fxLayout="row"  fxLayoutAlign="flex-start center">
+                  <span class="gray">Quantity: </span>
+                  <span class="value">{{item.quantity}}</span>
+                  <div fxLayout="column" class="edit">
+                    <mat-icon class="edit-qt" (click)="editQt(1, item.album.id)">arrow_drop_up</mat-icon>
+                    <mat-icon class="edit-qt" (click)="editQt(0, item.album.id)">arrow_drop_down</mat-icon>
+                  </div>
+                </div>
+              </div>
+              <div class="edit-move-delete">
+                <div class="actions" fxLayout="row" fxLayoutAlign="space-between center">
+                  <span>{{item.album.price * item.quantity | currency:'VND'}}</span>
+                  <span class="move-item coming-soon" (click)="removeLineItem()">REMOVE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="30">
+        <div class="order-total-summary">
+          <div class="coupon-section">
+            <span class="text-label">Coupons</span>
+            <a class="apply-coupon coming-soon"></a>
+          </div>
+          <div class="gift-wrap-order">
+            <span class="gift-wrap-checkbox coming-soon"></span>
+            <a href="" class="gift-card-lbl">Gift wrap for</a>
+            <span class="gift-card-price">$1</span>
+            <span class="not-cod">Cash/Card On Delivery not available</span>
+          </div>
+          <div class="order-summary-span">
+            <div class="bag-total">
+              <span>Bag Total</span>
+              <span class="value"></span>
+            </div>
+            <div class="coupon">
+              <span>Coupon Discount</span>
+              <span class="apply-coupon c-blue coming-soon">Apply Coupon</span>
+            </div>
+            <div class="shipping">
+              <span>Delivery</span>
+              <span class="shipping-fee c-green">FREE</span>
+            </div>
+          </div>
+          <div class="order-total footer">
+            <div class="place-order">
+              <button (click)="placeOrder()" class="order-btn">PLACE ORDER</button>
+            </div>
+            <div class="total-amount">
+              <span class="total-rupees">{{getSum() | currency:'VND'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noOrder>
+    <div class="empty" fxLayout="column" fxLayoutAlign="center center">
+      <img src="assets/img/cart.png" height="150" width="150">
+      <h2>Your Shopping Cart is empty</h2>
+      <a [routerLink]="['/home']">Back home to shopping</a>
+    </div>
+  </ng-template>
+</div>

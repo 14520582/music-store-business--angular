@@ -1,0 +1,38 @@
+.navbar-transparent {
+    padding-top: 0px;
+}
+.btn-post{
+    background-color: rgba(67,160,71 ,.9);
+    color: white;
+}
+.btn-login {
+    background-color: rgba(37, 49, 206, 0.9);
+    color: white; 
+}
+.fixed-top {
+    z-index: 10;
+}
+a { cursor: pointer; }
+.navbar-brand {
+    padding: 0px 15px;
+}
+.cart-btn {
+    border: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    mat-icon {
+        color: gray
+    }
+}
+.number {
+    background-color: rgb(233, 64, 64);
+    border-radius: 10px;
+    width: 20px;
+    color: white;
+    height: 20px;
+    text-align: center;
+    margin-right: 6px;
+}

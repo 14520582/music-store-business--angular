@@ -1,0 +1,15 @@
+<div>
+  <div class="container header">
+    <h5>{{category}}</h5>
+    <button class="btn btn-outline-success">See more</button>
+  </div>
+  <div>
+    <div class="main"
+      fxLayout="row wrap" 
+      fxLayout.xs="column"> 
+      <div *ngFor="let item of albums" fxFlex="20%">  
+        <app-album-card [item]="item"></app-album-card> 
+      </div>
+    </div>
+  </div>
+</div>

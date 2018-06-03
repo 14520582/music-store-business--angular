@@ -6,5 +6,6 @@ export class Constant {
     public static URL_GET_ALL_BOOK = "http://www.mocky.io/v2/5ab367382f00006000ca36df";
     public static SERVER = "http://localhost:8080/musicstore/"
     public static PAGE_SIZE: number = 8;
+    public static SECTION_SIZE: number = 20;
     public static CAROUSEL_SIZE: number = 4;
  }

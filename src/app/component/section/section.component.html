@@ -1,0 +1,30 @@
+<div class="section-container">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-paginator [length]="totalOfAlbums" [pageSize]="20" (page)="onPaginateChange($event)">
+    </mat-paginator>
+    <div>
+      <div class="selection-bar has-border">
+        <mat-form-field>
+          <input matInput [(ngModel)]="term">
+        </mat-form-field>
+        <mat-icon (click)="toSearchResult()">search</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="albums.length > 0; else noResult">
+    <div class="main" fxLayout="row wrap" fxLayout.xs="column">
+      <div *ngFor="let item of albums" fxFlex="20%">
+        <app-album-card [item]="item"></app-album-card>
+      </div>
+    </div>
+  </div>
+  <ng-template #noResult>
+    <div class="empty" fxLayout="column" fxLayoutAlign="center center">
+      <h2>Result not found</h2>
+      <a [routerLink]="['/home']">Back to Home</a>
+    </div>
+  </ng-template>
+  <mat-paginator [length]="totalOfAlbums" [pageSize]="20" (page)="onPaginateChange($event)">
+  </mat-paginator>
+  <app-carousel *ngIf="type != 4" [category]="'New Release'" [albums]="newRelease" [section]="{type: 4, content: null}"></app-carousel>
+</div>

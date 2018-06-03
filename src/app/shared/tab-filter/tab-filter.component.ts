@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./tab-filter.component.scss']
 })
 export class TabFilterComponent implements OnInit {
+  term : string = ''
   constructor(
     private router: Router
   ) { }
@@ -14,6 +15,6 @@ export class TabFilterComponent implements OnInit {
   ngOnInit() {
   }
   toSearchResult(){
-      this.router.navigate(['/search-result/']);
+      this.router.navigate(['/section', {type: 0, content: this.term}]);
   }
 }

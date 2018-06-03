@@ -1,0 +1,30 @@
+.section-container {
+    margin: 100px 50px;
+    min-height: 400px;
+}
+.book-row {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid gray;
+}
+span{
+    font-weight: bold;
+}
+mat-panel-title {
+    color: rgb(192, 14, 14);
+    font-weight: 500
+}
+.header-table{
+    border-bottom: 1px solid gray;
+}
+.span-header {
+    text-align: center
+}
+::ng-deep .mat-expansion-panel {
+    border-radius: 5px;
+    box-shadow: 0 0px 0px 0px rgba(0,0,0,.2), 0 0px 0px 0 rgba(0,0,0,.14), 0 0px 0px 0 rgba(0,0,0,.12) !important
+}
+::ng-deep .mat-expansion-panel:hover {
+    background-color: rgb(197, 252, 196)
+}

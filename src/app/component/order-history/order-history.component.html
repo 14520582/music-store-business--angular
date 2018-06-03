@@ -1,3 +1,52 @@
-<p>
-  order-history works!
-</p>
+<div class="section-container">
+  <div class="header-table">
+    <span fxFlex="3">No</span>
+    <span fxFlex="8" class="span-header">Date</span>
+    <span fxFlex="15" class="span-header">Customer</span>
+    <span fxFlex="10" class="span-header">Phone</span>
+    <span fxFlex="20" class="span-header">Email</span>
+    <span fxFlex="25" class="span-header">Address</span>
+    <span fxFlex class="span-header">Status</span>
+  </div>
+  <div class="book-row" *ngFor="let item of orders">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxFlex="3">{{item.id}}</div>
+      <div fxFlex="8" fxLayoutAlign="center center">{{item.date | date:'dd-MM-yyyy'}}</div>
+      <div fxFlex="15" fxLayoutAlign="center center" class="name">{{item.name}}</div>
+      <div fxFlex="10" fxLayoutAlign="center center" class="phone">{{item.phone}}</div>
+      <div fxFlex="20" fxLayoutAlign="center center">{{item.customer.email}}</div>
+      <div fxFlex="25" fxLayoutAlign="center center">{{item.address}}</div>
+      <div fxFlex fxLayoutAlign="center center" [ngStyle]="{'color': getColor(item.status)}">{{getStatus(item.status)}}</div>
+    </div>
+    <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> 
+              {{getSum(item.details) | currency:'VND'}}
+            </mat-panel-title>
+            <mat-panel-description>
+                List details
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="header-table">
+            <span fxFlex="20" class="span-header">Name</span>
+            <span fxFlex="10" class="span-header">Artist</span>
+            <span fxFlex="10" class="span-header">Cover</span>
+            <span fxFlex="15" class="span-header">Price</span>
+            <span fxFlex="10" class="span-header">Quantity</span>
+            <span fxFlex class="span-header">Total</span>
+          </div>
+          <div class="book-row" *ngFor="let detail of item.details" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="20" fxLayoutAlign="center center">{{detail.album.name}}</div>
+            <div fxFlex="10" fxLayoutAlign="center center">{{detail.album.artist.name}}</div>
+            <div fxFlex="10" fxLayoutAlign="center center">
+              <img src={{detail.album.cover}} width="50" height="50">
+            </div>
+            <div fxFlex="15" fxLayoutAlign="center center">{{detail.album.price | currency:'VND'}}</div>
+            <div fxFlex="10" fxLayoutAlign="center center">{{detail.quantity}}</div>
+            <div fxFlex fxLayoutAlign="center center">{{detail.quantity * detail.album.price | currency:'VND'}}</div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+  </div>
+</div>

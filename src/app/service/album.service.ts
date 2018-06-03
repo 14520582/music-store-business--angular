@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { MatDialog } from '@angular/material';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 @Injectable()
 export class AlbumService {
   public pageSubject = new BehaviorSubject<any>([]);
@@ -22,17 +22,77 @@ export class AlbumService {
     private authService: AuthService
   ) {
     this.authService.userInfo.subscribe(data => {
-      if(data)
-      this.token = data.token;
+      if (data)
+        this.token = data.token;
       console.log(data)
     })
   }
+
+  getPageForSection(page: number, type: number, content: any) {
+    console.log(type)
+    if (type == 0)
+      this.getPageOnSearching(page, Constant.SECTION_SIZE, content);
+    if (type == 1)
+      this.getPageArtist(page, Constant.SECTION_SIZE, content);
+    if (type == 2)
+      this.getPageGenre(page, Constant.SECTION_SIZE, content);
+    if (type == 3)
+      this.getPageByCountry(page, Constant.SECTION_SIZE, content);
+    if (type == 4)
+      this.getPage(page, Constant.SECTION_SIZE);
+  }
+  //4
   getPage(page: number, pageSize: number) {
+    console.log('new')
     this.http.get<any>(Constant.SERVER + 'album/page' + '?page=' + page + '&pagesize=' + pageSize).subscribe(data => {
       console.log(data)
       this.pageSubject.next(data);
       this.albums = data.content;
     })
+  }
+  //0
+  getPageOnSearching(page: number, pageSize: number, term: string) {
+    console.log('search')
+    this.http.get<any>(Constant.SERVER + 'album/client/search' + '?page=' + page + '&pagesize=' + pageSize + '&term=' + term).subscribe(data => {
+      console.log(data)
+      this.pageSubject.next(data);
+      this.albums = data.content;
+    })
+  }
+  //1
+  getPageArtist(page: number, pageSize: number, id: number) {
+    console.log('artist')
+    this.http.get<any>(Constant.SERVER + 'album/client/searchartist' + '?page=' + page + '&pagesize=' + pageSize + '&id=' + id).subscribe(data => {
+      console.log(data)
+      this.pageSubject.next(data);
+      this.albums = data.content;
+    })
+  }
+  //2
+  getPageGenre(page: number, pageSize: number, id: number) {
+    console.log('genre')
+    this.http.get<any>(Constant.SERVER + 'album/client/searchgenre' + '?page=' + page + '&pagesize=' + pageSize + '&id=' + id).subscribe(data => {
+      console.log(data)
+      this.pageSubject.next(data);
+      this.albums = data.content;
+    })
+  }
+  //3
+  getPageByCountry(page: number, pageSize: number, country: string) {
+    console.log('country')
+    this.http.get<any>(Constant.SERVER + 'album/client/searchcountry' + '?page=' + page + '&pagesize=' + pageSize + '&country=' + country).subscribe(data => {
+      console.log(data)
+      this.pageSubject.next(data);
+      this.albums = data.content;
+    })
+  }
+
+
+  getPageNewRelease(page: number, pageSize: number): Observable<any> {
+    return this.http.get<any>(Constant.SERVER + 'album/page' + '?page=' + page + '&pagesize=' + pageSize)
+  }
+  getPageByArtist(page: number, pageSize: number, id: number): Observable<any> {
+    return this.http.get<any>(Constant.SERVER + 'album/client/searchartist' + '?page=' + page + '&pagesize=' + pageSize + '&id=' + id)
   }
   getAllGenres(): Observable<IGenre[]> {
     return this.http.get<IGenre[]>(Constant.SERVER + 'genre/all')
@@ -46,7 +106,7 @@ export class AlbumService {
     };
     return this.http.get<ICountry[]>(Constant.SERVER + 'country/all', httpOptions)
   }
-  addArtist(artist: IArtist): Observable<IArtist>  {
+  addArtist(artist: IArtist): Observable<IArtist> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -64,24 +124,10 @@ export class AlbumService {
     };
     return this.http.get<IArtist[]>(Constant.SERVER + 'artist/all', httpOptions)
   }
-  getById(id: number): Observable<IAlbum>  {
+  getById(id: number): Observable<IAlbum> {
     return this.http.get<IAlbum>(Constant.SERVER + 'album/client/' + id)
   }
-  getPageOnSearching(page: number, pageSize: number, term: string){
-    this.http.get<any>(Constant.SERVER + 'album/client/search' + '?page=' + page + '&pagesize=' + pageSize + '&term=' + term).subscribe(data => {
-      console.log(data)
-      this.pageSubject.next(data);
-      this.albums = data.content;
-    })
-  }
-  getPageByCountry(page: number, pageSize: number, country: string) {
-    this.http.get<any>(Constant.SERVER + 'album/client/searchcountry' + '?page=' + page + '&pagesize=' + pageSize + '&country=' + country).subscribe(data => {
-      console.log(data)
-      this.pageSubject.next(data);
-      this.albums = data.content;
-    })
-  }
-  getNewReleaseCountry(page: number, pageSize: number, country: string) : Observable<any> {
+  getNewReleaseCountry(page: number, pageSize: number, country: string): Observable<any> {
     return this.http.get<any>(Constant.SERVER + 'album/client/searchcountry' + '?page=' + page + '&pagesize=' + pageSize + '&country=' + country)
   }
   edit(item: IAlbum) {
@@ -170,7 +216,7 @@ export class AlbumService {
         'Token': this.token
       })
     };
-    this.http.put<IAlbum>(Constant.SERVER + 'album/changestatus?id=' + id,null, httpOptions).subscribe(data => {
+    this.http.put<IAlbum>(Constant.SERVER + 'album/changestatus?id=' + id, null, httpOptions).subscribe(data => {
       let index = this.albums.findIndex(album => album.id === data.id);
       this.albums[index] = data;
       let temp: any = this.pageSubject.getValue()

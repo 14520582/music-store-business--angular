@@ -1,3 +1,41 @@
-<div class="section-container">
-  {{item.name}}
+<div class="section-container" *ngIf="item != null">
+  <div class="row padding-top">
+    <div class="col-md-6">
+      <div class="image-container">
+        <img itemprop="image" src={{item.cover}} class="thumbnails-selected-image" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="details">
+          <h1 class="title">{{item.name}}</h1>
+          <p class="selling-price">
+            <strong>{{item.price | currency:'VND'}}</strong>
+          </p>
+          <p class="artist" (click)="toSection()">{{item.artist.name}}</p>
+          <p class="vatInfo">Additional VAT may apply; charged at checkout</p>
+          <button (click)="addToCart()" class="btn pdp-add-to-bag pdp-button">ADD TO CART</button>
+          <div>
+            <span>Release date: </span> {{item.releasedate | date:'dd-MM-yyyy'}}</div>
+          <div>
+            <span>Genre: </span> {{item.genre.name}}
+          </div>
+          <span>List songs: </span>
+          <div class="header-table">
+            <span fxFlex="50" class="span-header">Name</span>
+            <span fxFlex="10" class="span-header">Genre</span>
+            <span fxFlex="40" class="span-header">Artist</span>
+          </div>
+          <div class="song-line" *ngFor="let song of item.songs" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="50" fxLayoutAlign="center center">{{song.name}}</div>
+            <div fxFlex="10" fxLayoutAlign="center center">{{song.genre.name}}</div>
+            <div fxFlex="40" fxLayoutAlign="center center">{{song.singer.name}}</div>
+          </div>
+          <p class="description">{{item.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-carousel [category]="'Same the artist'" [albums]="sameArtist" [section]="{type: 1, content: item.artist.id}"></app-carousel>
+  <app-carousel [category]="'New Release'" [albums]="newRelease" [section]="{type: 4, content: null}"></app-carousel>
 </div>

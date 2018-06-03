@@ -50,6 +50,11 @@ interface IRealEstate {
 interface IOrder {
     id?: number;
     date?: number;
+    name?: string;
+    address?: string;
+    payment?: number;
+    phone?: string;
+    email?: string;
     details?: IDetailsOrder[];
     customer?: IUser;
     status?: number

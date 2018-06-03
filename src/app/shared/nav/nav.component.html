@@ -14,31 +14,24 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link">V-pop</a>
+        <a class="nav-link" [routerLink]="['/section', {type: 3, content: 'viet nam'}]">V-pop</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">K-pop</a>
+        <a class="nav-link" [routerLink]="['/section', {type: 3, content: 'south korea'}]">K-pop</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">US-UK</a>
+        <a class="nav-link" [routerLink]="['/section', {type: 3, content: 'united'}]">US-UK</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">Japan</a>
+        <a class="nav-link" [routerLink]="['/section', {type: 3, content: 'japan'}]">Japan</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" #menuTriggerNews="matMenuTrigger" (mouseenter)="menuTriggerNews.openMenu()" [matMenuTriggerFor]="news">Genres</a>
         <mat-menu #news="matMenu">
           <span (mouseleave)="menuTriggerNews.closeMenu()">
             <div *ngFor="let genre of genres">
-              <button mat-menu-item (click)="navigateToNewsList(genre.name)">{{genre.name}}</button>
+              <button mat-menu-item (click)="toSection(2,genre.id)">{{genre.name}}</button>
             </div>
-            <!-- <button mat-menu-item (click)="navigateToNewsList('market')">Tin thị trường</button>
-            <button mat-menu-item (click)="navigateToNewsList('analysis')">Phân tích - nhận định</button>
-            <button mat-menu-item (click)="navigateToNewsList('policy')">Chính sách - Quản lý</button>
-            <button mat-menu-item (click)="navigateToNewsList('plan')">Thông tin quy hoạch</button>
-            <button mat-menu-item (click)="navigateToNewsList('worldwide')">Bất động sản thế giới</button>
-            <button mat-menu-item (click)="navigateToNewsList('constant')">Tư vất luật</button>
-            <button mat-menu-item (click)="navigateToNewsList('advice')">Lời khuyên</button> -->
           </span>
         </mat-menu>
       </li>
@@ -58,8 +51,8 @@
       {{userInfo.name}}
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Profile</button>
-      <button mat-menu-item>Order history</button>
+      <button mat-menu-item (click)="toProfile()">Profile</button>
+      <button mat-menu-item (click)="toHistory()">Order history</button>
       <button mat-menu-item (click)="logout()">Sign out</button>
     </mat-menu>
   </div>

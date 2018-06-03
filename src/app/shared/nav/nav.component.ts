@@ -46,7 +46,17 @@ export class NavComponent implements OnInit {
   toCart() {
     this.router.navigate(['/cart'])
   }
+  toProfile() {
+    this.router.navigate(['/profile'])
+  }
+  toHistory() {
+    this.router.navigate(['/history'])
+  }
+  toSection(type: number, content: any) {
+    this.router.navigate(['/section', {type: type, content: content}])
+  }
   logout(){
+    this.router.navigate(['/home'])
     this.authService.logout()
   }
 }

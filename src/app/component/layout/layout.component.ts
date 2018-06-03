@@ -11,5 +11,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  onActivate(event) {
+    window.scroll(0, 0);
+  }
 }

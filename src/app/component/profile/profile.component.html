@@ -1,0 +1,64 @@
+<div class="section-container">
+  <div>
+    <div>
+      <div>
+        <div class="header">
+          <h4 class="title">Edit Profile</h4>
+        </div>
+        <div class="content">
+          <form [formGroup]="userForm">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" class="form-control" placeholder="Name" formControlName="name">
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="form-group">
+                  <label>Phone number</label>
+                  <input type="number" class="form-control" placeholder="Phone number" formControlName="phone">
+                </div>
+              </div>
+            </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                </div>
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" class="form-control" placeholder="Home Address" formControlName="address">
+                </div>
+            <div [style.color]="'red'">{{updateError}}</div>
+            <button type="submit" class="btn btn-success btn-fill pull-right" [disabled]="!userForm.dirty" (click)="updateProfile()">Update Profile</button>
+            <div class="clearfix"></div>
+          </form>
+        </div>
+      </div>
+      <div>
+        <div class="header">
+          <h4 class="title">Change Password</h4>
+        </div>
+        <form [formGroup]="newPassForm">
+          <div class="content">
+            <div class="form-group">
+              <label>Old Password</label>
+              <input type="password" class="form-control" formControlName="old">
+            </div>
+            <div class="form-group">
+              <label>New Password</label>
+              <input type="password" class="form-control" formControlName="new">
+            </div>
+            <div class="form-group">
+              <label>Confirm Password</label>
+              <input type="password" class="form-control" formControlName="confirm">
+            </div>
+            <div [style.color]="'red'">{{passError}}</div>
+            <button type="submit" class="btn btn-success btn-fill pull-right" [disabled]="!newPassForm.valid" (click)="changePassword()">Save Password</button>
+            <div class="clearfix"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

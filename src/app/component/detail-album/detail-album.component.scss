@@ -1,0 +1,92 @@
+.padding-top {
+    padding-top: 50px;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.pdp-add-to-bag {
+    width: 60%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #20bd99;
+    border: 1px solid #20bd99;
+    color: #fff;
+}
+  
+.pdp-button {
+    border-radius: 3px;
+    outline: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 30px;
+    font-size: 15px;
+    min-height: 22px;
+}
+.image-container {
+    display: inline-block;
+    height: 500px;
+    width: 500px;
+    .thumbnails-selected-image {
+      height: 420px;
+      min-height: 300px;
+      width: 420px;
+      background: rgb(245, 245, 246) none repeat scroll 0% 0% / auto padding-box border-box;
+    }
+}
+.title {
+    color: #696e79;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    font-size: 20px;
+    font-weight: 600
+}
+  
+.selling-price {
+    font-size: 16px;
+    margin: 10px 0;
+    font-weight: 500;
+}
+  
+.vatInfo {
+    color: #7e818c;
+    font-size: 13px;
+    font-style: italic
+}
+  
+strong {
+    font-family: Whitney-SemiBold,Whitney;
+    color: rgb(190, 28, 28)
+}
+.song-line {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid gray;
+}
+.header-table{
+    border-bottom: 1px solid gray;
+    span {
+        color: gray !important;
+        font-style: normal !important
+    }
+}
+.span-header {
+    text-align: center
+}
+.details {
+    width: 100%;
+    span {
+        font-weight: 400;
+        color: blue;
+        font-style: italic
+    }
+    .artist {
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 500;
+        color: black
+    }
+    .artist:hover {
+        color: rgb(0, 156, 26)
+    }
+}

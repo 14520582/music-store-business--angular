@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../service/order.service';
 import { IOrder } from '../../interfaces/IEntity';
 import { CurrencyPipe } from '@angular/common';
-
+import { MatDialog } from '@angular/material';
+import { PaymentComponent } from '../payment/payment.component';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -11,7 +12,8 @@ import { CurrencyPipe } from '@angular/common';
 export class CartComponent implements OnInit {
   order: IOrder
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    private matDialog : MatDialog,
   ) { 
     this.orderService.order.subscribe( data => {
       this.order = data
@@ -21,6 +23,9 @@ export class CartComponent implements OnInit {
     this.orderService.removeAll()
   }
   ngOnInit() {
+  }
+  placeOrder() {
+    this.matDialog.open(PaymentComponent, {data: {order: this.order}})
   }
   getSum() {
     let sum = 0;

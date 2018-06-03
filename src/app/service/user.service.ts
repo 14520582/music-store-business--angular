@@ -32,7 +32,14 @@ export class UserService {
     };
     return this.http.put<any>(Constant.SERVER + 'account/update', user, httpOptions)
   }
-
+  register(user: IUser): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<any>(Constant.SERVER + 'account/register', user, httpOptions)
+  }
   changePassword(id: number, oldPassword: string, newPassword: string): Observable<any>  {
     const httpOptions = {
       headers: new HttpHeaders({

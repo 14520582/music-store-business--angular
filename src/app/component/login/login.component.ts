@@ -5,12 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/catch';
 import { catchError, map, tap } from 'rxjs/operators'
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as user from '../../actions/user.action'
 import { AuthService } from '../../service/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SignUpComponent } from '../sign-up/sign-up.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<LoginComponent>,
     private formBuilder: FormBuilder,
+    private matDialog : MatDialog,
     private store: Store<fromRoot.State>,
     private authService: AuthService
   ) {
@@ -38,7 +40,9 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.authService.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value)
   }
-
+  openSignUpDialog(){
+    this.matDialog.open(SignUpComponent)
+  }
   ngOnDestroy() {
   }
 }

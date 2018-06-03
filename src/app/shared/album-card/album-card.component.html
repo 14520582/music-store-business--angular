@@ -10,7 +10,7 @@
       <mat-card-title class="title">{{item.name}}</mat-card-title>
     </a>
     <div class="sub-detail-container">
-      <div>{{item.artist.name}}</div>
+      <a [routerLink]="['/section', {type: 1, content: item.artist.id}]">{{item.artist.name}}</a>
       <div class="price">{{item.price | currency:'VND'}}</div>
     </div>
   </div>

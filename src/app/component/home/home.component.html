@@ -2,8 +2,8 @@
     <div class="page-header section-dark" style="background-image: url('assets/img/festivals.jpg')">
         <app-tab-filter></app-tab-filter>
     </div>
-    <app-carousel [category]="'V-pop: New Release'" [albums]="vpopAlbum"></app-carousel>
-    <app-carousel [category]="'K-pop: New Release'" [albums]="kpopAlbum"></app-carousel>
-    <app-carousel [category]="'US-UK: New Release'" [albums]="usukAlbum"></app-carousel>
-    <app-carousel [category]="'Japan: New Release'" [albums]="japanAlbum"></app-carousel>
+    <app-carousel [category]="'V-pop: New Release'" [albums]="vpopAlbum" [section]="{type: 3, content: 'viet nam'}"></app-carousel>
+    <app-carousel [category]="'K-pop: New Release'" [albums]="kpopAlbum" [section]="{type: 3, content: 'south korea'}"></app-carousel>
+    <app-carousel [category]="'US-UK: New Release'" [albums]="usukAlbum" [section]="{type: 3, content: 'united'}"></app-carousel>
+    <app-carousel [category]="'Japan: New Release'" [albums]="japanAlbum" [section]="{type: 3, content: 'japan'}"></app-carousel>
 </div>

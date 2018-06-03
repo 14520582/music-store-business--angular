@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IOrder, IDetailsOrder } from '../interfaces/IEntity'
+import { IOrder, IDetailsOrder, IUser } from '../interfaces/IEntity'
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -18,6 +18,7 @@ export class OrderService {
   currentOrder: IOrder;
   myStorage = window.localStorage;
   public order: BehaviorSubject<any>;
+  userInfo: IUser;
   token: string;
   constructor(
     private http: HttpClient,
@@ -29,18 +30,49 @@ export class OrderService {
       this.currentOrder = data;
     })
     this.authService.userInfo.subscribe(data => {
-      if(data)
-      this.token = data.token;
-      console.log(data)
+      if(data){
+        this.token = data.token;
+        this.userInfo = data;
+        console.log(data)
+      }
     })
   }
   loadOrder() {
-    let data = this.myStorage.getItem('order');
+    let data: any = this.myStorage.getItem('order');
     if (data) {
-      console.log('load: ')
-      console.log(data)
-      this.order.next(JSON.parse(data));
+      const temp: any = JSON.parse(data)
+      if(temp.details) {
+        console.log('load: ')
+        console.log(temp)
+        this.order.next(temp);
+      }
     }
+  }
+  placeOrder(order: IOrder): Observable<IOrder> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Token': this.token
+      })
+    };
+    const body: IOrder = {
+      ...order,
+      date: new Date().getTime(),
+      customer: {
+        id: this.userInfo.id
+      }
+    }
+    console.log(body)
+    return this.http.post<IOrder>(Constant.SERVER + 'orders/client/add', body, httpOptions)
+  }
+  getOrder(): Observable<IOrder[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Token': this.token
+      })
+    };
+    return this.http.get<IOrder[]>(Constant.SERVER + 'orders/client/'+ this.userInfo.id, httpOptions)
   }
   addCart(detail : IDetailsOrder) {
     console.log(this.currentOrder)

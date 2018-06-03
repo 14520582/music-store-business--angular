@@ -12,11 +12,14 @@ import { AuthService } from '../service/auth.service';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { OrderService } from '../service/order.service';
 import { AlbumService } from '../service/album.service';
+import { UserService } from '../service/user.service';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { DetailAlbumComponent } from './detail-album/detail-album.component';
 import { CartComponent } from './cart/cart.component';
-import { PaymentComponent } from './payment/payment.component';
+import { PaymentComponent, ConfirmDialog } from './payment/payment.component';
 import { AddressComponent } from './address/address.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SectionComponent } from './section/section.component';
 @NgModule({
   declarations: [
       HomeComponent, 
@@ -26,13 +29,16 @@ import { AddressComponent } from './address/address.component';
       AboutComponent,
       ContactComponent,
       SignUpComponent,
+      ConfirmDialog,
       OrderHistoryComponent,
       DetailAlbumComponent,
       CartComponent,
       PaymentComponent,
-      AddressComponent
+      AddressComponent,
+      ProfileComponent,
+      SectionComponent
   ],
-  entryComponents: [SignUpComponent],
+  entryComponents: [SignUpComponent, PaymentComponent, ConfirmDialog],
   imports: [
     CommonModule,
     RouterModule,
@@ -43,11 +49,14 @@ import { AddressComponent } from './address/address.component';
     LoginComponent,
     LayoutComponent,
     FooterComponent,
+    ConfirmDialog,
     SignUpComponent,
     OrderHistoryComponent,
     DetailAlbumComponent,
-    CartComponent
+    CartComponent,
+    ProfileComponent,
+    SectionComponent
   ],
-  providers: [AuthService, OrderService, AlbumService],
+  providers: [AuthService, OrderService, AlbumService, UserService],
 })
 export class MainModule { }

@@ -31,7 +31,7 @@
               <div class="edit-move-delete">
                 <div class="actions" fxLayout="row" fxLayoutAlign="space-between center">
                   <span>{{item.album.price * item.quantity | currency:'VND'}}</span>
-                  <span class="move-item coming-soon" (click)="removeLineItem()">REMOVE</span>
+                  <span class="move-item coming-soon" (click)="removeLineItem(item.album.id)">REMOVE</span>
                 </div>
               </div>
             </div>

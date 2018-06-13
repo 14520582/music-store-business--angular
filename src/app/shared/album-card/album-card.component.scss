@@ -46,6 +46,20 @@ mat-card {
     border-radius: 5px;
     text-align: center;
 }
+.container .out-stock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 25px;
+    font-weight: 500;
+    color: #dc6005;
+    border: 2px solid #dc6005;
+    padding: 2px;
+    border-radius: 5px;
+    text-align: center;
+}
 .details {
     padding: 24px;
 }

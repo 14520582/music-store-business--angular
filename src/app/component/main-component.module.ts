@@ -15,7 +15,7 @@ import { AlbumService } from '../service/album.service';
 import { UserService } from '../service/user.service';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { DetailAlbumComponent } from './detail-album/detail-album.component';
-import { CartComponent } from './cart/cart.component';
+import { CartComponent, LoginRequestDialog } from './cart/cart.component';
 import { PaymentComponent, ConfirmDialog } from './payment/payment.component';
 import { AddressComponent } from './address/address.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -28,6 +28,7 @@ import { SectionComponent } from './section/section.component';
       FooterComponent,
       AboutComponent,
       ContactComponent,
+      LoginRequestDialog,
       SignUpComponent,
       ConfirmDialog,
       OrderHistoryComponent,
@@ -38,7 +39,7 @@ import { SectionComponent } from './section/section.component';
       ProfileComponent,
       SectionComponent
   ],
-  entryComponents: [SignUpComponent, PaymentComponent, ConfirmDialog],
+  entryComponents: [SignUpComponent, PaymentComponent, ConfirmDialog, LoginRequestDialog],
   imports: [
     CommonModule,
     RouterModule,
@@ -50,6 +51,7 @@ import { SectionComponent } from './section/section.component';
     LayoutComponent,
     FooterComponent,
     ConfirmDialog,
+    LoginRequestDialog,
     SignUpComponent,
     OrderHistoryComponent,
     DetailAlbumComponent,

@@ -59,7 +59,7 @@ export class OrderService {
       ...order,
       date: new Date().getTime(),
       customer: {
-        id: this.userInfo.id
+        id: this.authService.logged ? this.userInfo.id : 0
       }
     }
     console.log(body)
@@ -96,10 +96,19 @@ export class OrderService {
       }
     }
   }
-  removeDetail(detail : IDetailsOrder) {
-    const tempOrder = this.currentOrder.details.filter( x => x.album.id !== detail.album.id)
-    this.order.next(tempOrder);
-    this.myStorage.setItem('order', JSON.stringify(tempOrder));
+  removeDetail(idAlbum : number) {
+    const newDetails = this.currentOrder.details.filter( x => x.album.id !== idAlbum)
+    if(newDetails.length < 1) {
+      this.order.next(null);
+      this.myStorage.removeItem('order')
+    }else{
+      const newOrder = {
+        ...this.currentOrder,
+        details: newDetails
+      }
+      this.order.next(newOrder);
+      this.myStorage.setItem('order', JSON.stringify(newOrder));
+    }
   }
   removeAll() {
     this.order.next(null);

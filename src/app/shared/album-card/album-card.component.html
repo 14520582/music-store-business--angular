@@ -3,7 +3,10 @@
     <a [routerLink]="['/detail-album', {id: item.id}]">
       <img src={{item.cover}} alt="{{item.name}}">
     </a>
-    <button class="btn btn-outline-danger" (click)="addToCart()">Add to cart</button>
+    <button *ngIf="item.status !== 0 && item.quantity > 0;else outStock" class="btn btn-outline-danger" (click)="addToCart()">Add to cart</button>
+    <ng-template #outStock>
+      <div class="out-stock">Out-stock</div>
+    </ng-template>
   </div>
   <div class="details">
     <a [routerLink]="['/detail-album', {id: item.id}]">

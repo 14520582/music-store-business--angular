@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { OrderService } from '../../service/order.service';
-import { IOrder } from '../../interfaces/IEntity';
+import { IOrder, IDetailsOrder } from '../../interfaces/IEntity';
 import { CurrencyPipe } from '@angular/common';
-import { MatDialog } from '@angular/material';
 import { PaymentComponent } from '../payment/payment.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../../service/auth.service';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -13,6 +16,7 @@ export class CartComponent implements OnInit {
   order: IOrder
   constructor(
     private orderService: OrderService,
+    private authService: AuthService,
     private matDialog : MatDialog,
   ) { 
     this.orderService.order.subscribe( data => {
@@ -22,10 +26,22 @@ export class CartComponent implements OnInit {
   removeAll() {
     this.orderService.removeAll()
   }
+  removeLineItem( idAlbum : number ) {
+    this.orderService.removeDetail(idAlbum);
+  }
   ngOnInit() {
   }
   placeOrder() {
-    this.matDialog.open(PaymentComponent, {data: {order: this.order}})
+    if(this.authService.logged)
+      this.matDialog.open(PaymentComponent, {data: {order: this.order}})
+    else {
+      this.matDialog.open(LoginRequestDialog).afterClosed().subscribe( type => {
+        if(type === 2)
+          this.matDialog.open(LoginComponent)
+        else
+          this.matDialog.open(PaymentComponent, {data: {order: this.order}})
+      })
+    }
   }
   getSum() {
     let sum = 0;
@@ -48,4 +64,23 @@ export class CartComponent implements OnInit {
     }
   }
   
+}
+@Component({
+  selector: 'login-request-dialog',
+  templateUrl: '/login-request-dialog.component.html',
+  styleUrls: ['./login-request-dialog.component.scss']
+})
+export class LoginRequestDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<LoginRequestDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close(0);
+  }
+  onConfirm(): void {
+    this.dialogRef.close(2);
+  }
+
 }

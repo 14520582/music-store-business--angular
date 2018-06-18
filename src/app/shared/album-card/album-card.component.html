@@ -14,7 +14,7 @@
     </a>
     <div class="sub-detail-container">
       <a [routerLink]="['/section', {type: 1, content: item.artist.id}]">{{item.artist.name}}</a>
-      <div class="price">{{item.price | currency:'VND'}}</div>
+      <div class="price">{{item.price | currency:'VND':'symbol':'3.0-0'}}</div>
     </div>
   </div>
 </mat-card>

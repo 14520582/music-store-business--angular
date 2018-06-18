@@ -14,26 +14,26 @@ export class HomeComponent implements OnInit {
   constructor(
     private albumService: AlbumService
   ) {
-    this.albumService.getNewReleaseCountry(0, 8, 'South Korea').subscribe(data => {
+    this.albumService.getNewReleaseCountry(0, 10, 'South Korea').subscribe(data => {
       this.kpopAlbum = data.content;
       console.log(data)
     },
     error => {
       console.log(error)
     })
-    this.albumService.getNewReleaseCountry(0, 8, 'United').subscribe(data => {
+    this.albumService.getNewReleaseCountry(0, 10, 'United').subscribe(data => {
       this.usukAlbum = data.content;
     },
     error => {
       console.log(error)
     })
-    this.albumService.getNewReleaseCountry(0, 8, 'Japan').subscribe(data => {
+    this.albumService.getNewReleaseCountry(0, 10, 'Japan').subscribe(data => {
       this.japanAlbum = data.content;
     },
     error => {
       console.log(error)
     })
-    this.albumService.getNewReleaseCountry(0, 8, 'Viet Nam').subscribe(data => {
+    this.albumService.getNewReleaseCountry(0, 10, 'Viet Nam').subscribe(data => {
       this.vpopAlbum = data.content;
     },
     error => {

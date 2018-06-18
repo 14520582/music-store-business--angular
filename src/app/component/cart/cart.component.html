@@ -16,7 +16,7 @@
               <div class="size-qty-wrap">
                 <div class="seller">
                   <span class="gray">Price: </span>
-                  <span class="value">{{item.album.price | currency:'VND'}}</span>
+                  <span class="value">{{item.album.price | currency:'VND':'symbol':'3.0-0'}}</span>
                   <!--<span class="icon"></span>-->
                 </div>
                 <div fxLayout="row"  fxLayoutAlign="flex-start center">
@@ -30,7 +30,7 @@
               </div>
               <div class="edit-move-delete">
                 <div class="actions" fxLayout="row" fxLayoutAlign="space-between center">
-                  <span>{{item.album.price * item.quantity | currency:'VND'}}</span>
+                  <span>{{item.album.price * item.quantity | currency:'VND':'symbol':'3.0-0'}}</span>
                   <span class="move-item coming-soon" (click)="removeLineItem(item.album.id)">REMOVE</span>
                 </div>
               </div>
@@ -69,7 +69,7 @@
               <button (click)="placeOrder()" class="btn order-btn">PLACE ORDER</button>
             </div>
             <div class="total-amount">
-              <span class="total-rupees">{{getSum() | currency:'VND'}}</span>
+              <span class="total-rupees">{{getSum() | currency:'VND':'symbol':'3.0-0'}}</span>
             </div>
           </div>
         </div>

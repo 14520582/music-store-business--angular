@@ -21,6 +21,7 @@ export class DetailAlbumComponent implements OnInit {
     private albumService: AlbumService
   ) { 
     this.route.params.subscribe( params => {
+	  window.scroll(0, 0);
       this.albumService.getById(params.id).subscribe( data => {
         this.item = data;
         this.albumService.getPageByArtist(0, 10, data.artist.id).subscribe(data => {

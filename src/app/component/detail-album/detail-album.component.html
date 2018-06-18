@@ -10,7 +10,7 @@
         <div class="details">
           <h1 class="title">{{item.name}}</h1>
           <p class="selling-price">
-            <strong>{{item.price | currency:'VND'}}</strong>
+            <strong>{{item.price | currency:'VND':'symbol':'3.0-0'}}</strong>
           </p>
           <p class="artist" (click)="toSection()">{{item.artist.name}}</p>
           <p class="vatInfo">Additional VAT may apply; charged at checkout</p>

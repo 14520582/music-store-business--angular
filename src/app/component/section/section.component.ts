@@ -25,6 +25,7 @@ export class SectionComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe(params => {
+	  window.scroll(0, 0);
       console.log(params.content)
       console.log(params.type)
       this.content = params.content;

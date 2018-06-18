@@ -22,7 +22,7 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title> 
-              {{getSum(item.details) | currency:'VND'}}
+              {{getSum(item.details) | currency:'VND':'symbol':'3.0-0'}}
             </mat-panel-title>
             <mat-panel-description>
                 List details
@@ -42,9 +42,9 @@
             <div fxFlex="10" fxLayoutAlign="center center">
               <img src={{detail.album.cover}} width="50" height="50">
             </div>
-            <div fxFlex="15" fxLayoutAlign="center center">{{detail.album.price | currency:'VND'}}</div>
+            <div fxFlex="15" fxLayoutAlign="center center">{{detail.album.price | currency:'VND':'symbol':'3.0-0'}}</div>
             <div fxFlex="10" fxLayoutAlign="center center">{{detail.quantity}}</div>
-            <div fxFlex fxLayoutAlign="center center">{{detail.quantity * detail.album.price | currency:'VND'}}</div>
+            <div fxFlex fxLayoutAlign="center center">{{detail.quantity * detail.album.price | currency:'VND':'symbol':'3.0-0'}}</div>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
